@@ -2,7 +2,7 @@ var div = document.getElementById("div1");
 var video;
 let options = {
     inputs: 34,
-    outputs: 2,
+    outputs: 3,
     task: 'classification',
     debug: true
 }
@@ -13,6 +13,7 @@ let saveCounter = 0;
 
 async function start(){
     for (const dir in dirs) {
+        targetLabel = dir;
         for (let i = 0; i < dirs[dir].length; i++) {
             document.getElementById("status").innerHTML = "Loading";
             await  new Promise (resolve => setTimeout(resolve,20000))
@@ -21,7 +22,7 @@ async function start(){
             addVid(`/images/${dir}/${dirs[dir][i]}`);
             
         }
-         targetLabel = dir;
+         
          ++saveCounter;
         }   
 }
@@ -42,7 +43,7 @@ async function start(){
 }
 
 async function modelReady() {
-    // console.log('posenet ready');
+    console.log('posenet ready');
     document.getElementById("status").innerHTML = "Processing";
     await poseNet.on('pose', gotPoses);
     

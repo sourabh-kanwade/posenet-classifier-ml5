@@ -9,5 +9,12 @@ router.get('/', function(req, res, next) {
   })
   res.render('index', { title: 'Express' ,data:data});
 });
-
+router.get('/train', function(req, res, next) {
+  
+  res.render('train');
+});
+router.get('/test', function(req, res, next) {
+  
+  res.render('test');
+});
 module.exports = router;
